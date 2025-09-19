@@ -7,8 +7,6 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EmployeeManagementDB", "Emp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementLibrary", "EmployeeManagementLibrary\EmployeeManagementLibrary.csproj", "{FBF68A8F-1A71-489A-B2D1-1A636294CE08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A734456D-7EA1-4D1E-9546-DCEE91FD3BF4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Desktop", "EmployeeManagement.Desktop\EmployeeManagement.Desktop.csproj", "{3B4696CB-2B20-4FD0-BF61-D8285C636EA7}"
 EndProject
 Global
@@ -27,10 +25,6 @@ Global
 		{FBF68A8F-1A71-489A-B2D1-1A636294CE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF68A8F-1A71-489A-B2D1-1A636294CE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF68A8F-1A71-489A-B2D1-1A636294CE08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A734456D-7EA1-4D1E-9546-DCEE91FD3BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A734456D-7EA1-4D1E-9546-DCEE91FD3BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A734456D-7EA1-4D1E-9546-DCEE91FD3BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A734456D-7EA1-4D1E-9546-DCEE91FD3BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B4696CB-2B20-4FD0-BF61-D8285C636EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B4696CB-2B20-4FD0-BF61-D8285C636EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B4696CB-2B20-4FD0-BF61-D8285C636EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU

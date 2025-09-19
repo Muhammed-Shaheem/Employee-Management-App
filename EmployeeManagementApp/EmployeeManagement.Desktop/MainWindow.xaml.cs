@@ -1,13 +1,8 @@
-﻿using System.Text;
+﻿using EmployeeManagementLibrary;
+using EmployeeManagementLibrary.Data;
+using EmployeeManagementLibrary.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EmployeeManagement.Desktop;
 
@@ -16,16 +11,30 @@ namespace EmployeeManagement.Desktop;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly IDatabaseData data;
+    public List<EmployeeModel> Employees { get; set; } = new();
+
+    public MainWindow(IDatabaseData data)
     {
         InitializeComponent();
+        this.data = data;
+        LoadEmployeesInDropDown();
     }
 
     private void AddEmployee_Click(object sender, RoutedEventArgs e)
     {
         if (EmptyValueCheck())
         {
-            
+            var employee = new EmployeeModel
+            {
+                Name = txtName.Text,
+                BasicSalary = decimal.Parse(txtBasicSalary.Text),
+                Allowances = decimal.Parse(txtAllowances.Text),
+                PFPercent = decimal.Parse(txtPFPercent.Text)
+
+            };
+            data.AddEmployee(employee);
+            MessageBox.Show("New Employee Added", "Success Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
@@ -60,8 +69,35 @@ public partial class MainWindow : Window
         return true;
     }
 
-    private void CalculatePayroll_Click(object sender, RoutedEventArgs e)
+
+    private void LoadEmployeesInDropDown()
     {
+        Employees = data.GetAllEmployees();
+        cmbEmployees.ItemsSource = Employees;
+        cmbEmployees.DisplayMemberPath = "Name";
 
     }
+    private void CalculatePayroll_Click(object sender, RoutedEventArgs e)
+    {
+        if (cmbEmployees.SelectedItem is EmployeeModel selectedEmployee)
+        {
+            int leaveDays = int.TryParse(txtLeaveDays.Text, out int val) ? val : 0;
+
+            decimal pf = Utility.CalculatePF(selectedEmployee.BasicSalary, selectedEmployee.PFPercent);
+            (decimal leaveDeduction, decimal gross) = Utility.LeaveDeduction(selectedEmployee.BasicSalary, selectedEmployee.Allowances, leaveDays);
+            decimal netPay = Utility.NetPayment(gross, pf, leaveDeduction);
+
+            txtGross.Text = $"Gross: {gross:C}";
+            txtPF.Text = $"PF: {pf:C}";
+            txtLeaveDeduction.Text = $"Leave Deduction: {leaveDeduction:C}";
+            txtNet.Text = $"Net Pay: {netPay:C}";
+        }
+        else
+        {
+            MessageBox.Show("Please select an employee first.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+        }
+
+    }
+
+   
 }
