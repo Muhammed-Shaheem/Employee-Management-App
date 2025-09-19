@@ -3,7 +3,7 @@
 AS
 BEGIN
     set nocount on;
-    SELECT Id, [Name], BasicSalary, Allowances, PfPercent
+    SELECT Id, [Name], BasicSalary, Allowances, PFPercent
     FROM Employees
     WHERE Id = @Id;
 END

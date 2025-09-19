@@ -2,6 +2,6 @@
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT Id, [Name], BasicSalary, Allowances, PfPercent
+    SELECT Id, [Name], BasicSalary, Allowances, PFPercent
     FROM Employees;
 END

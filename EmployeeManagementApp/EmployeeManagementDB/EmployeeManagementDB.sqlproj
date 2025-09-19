@@ -70,4 +70,7 @@
     <Build Include="dbo\Stored Procedures\spEmployees_Get.sql" />
     <Build Include="dbo\Stored Procedures\spEmployees_GetById.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Pubish\EmployeeManagementDB.publish.xml" />
+  </ItemGroup>
 </Project>
