@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace EmployeeManagementLibrary.Models;
 
-namespace EmployeeManagementLibrary.Models
+public class EmployeeModel
 {
-    class EmployeeModel
-    {
-    }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public decimal BasicSalary { get; set; }
+    public decimal Allowances { get; set; }
+    public decimal PFPercent { get; set; }
 }
