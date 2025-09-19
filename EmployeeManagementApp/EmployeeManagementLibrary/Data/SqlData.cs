@@ -3,7 +3,7 @@ using EmployeeManagementLibrary.Models;
 
 namespace EmployeeManagementLibrary.Data;
 
-public class SqlData : IDatabaeData
+public class SqlData : IDatabaseData
 {
     private const string connectionStringName = "SqlDb";
     private readonly IDatabaseDb db;

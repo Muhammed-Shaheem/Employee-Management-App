@@ -23,36 +23,41 @@ public partial class MainWindow : Window
 
     private void AddEmployee_Click(object sender, RoutedEventArgs e)
     {
-        EmptyValueCheck();
+        if (EmptyValueCheck())
+        {
+            
+        }
     }
 
-    private void EmptyValueCheck()
+    private bool EmptyValueCheck()
     {
         if (string.IsNullOrWhiteSpace(txtName.Text))
         {
             MessageBox.Show("Name is required.");
             txtName.BorderBrush = Brushes.Red;
-            return;
+            return false;
         }
         else if (string.IsNullOrWhiteSpace(txtBasicSalary.Text))
         {
             MessageBox.Show("BasicSalary is required.");
             txtBasicSalary.BorderBrush = Brushes.Red;
-            return;
+            return false;
 
         }
         else if (string.IsNullOrWhiteSpace(txtAllowances.Text))
         {
             MessageBox.Show("Allowances is required.");
             txtAllowances.BorderBrush = Brushes.Red;
-            return;
+            return false;
         }
         else if (string.IsNullOrWhiteSpace(txtPFPercent.Text))
         {
             MessageBox.Show("PfPercent is required.");
             txtPFPercent.BorderBrush = Brushes.Red;
-            return;
+            return false;
         }
+
+        return true;
     }
 
     private void CalculatePayroll_Click(object sender, RoutedEventArgs e)
