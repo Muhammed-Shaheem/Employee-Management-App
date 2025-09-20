@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="Employee Management" Height="500" Width="800">
     <Grid Margin="10">
-        <TabControl FontFamily="Segoe UI" FontSize="14">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="131*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl FontFamily="Segoe UI" FontSize="14" Grid.ColumnSpan="2">
 
 
             <!-- Employee Form Tab -->
@@ -49,12 +53,9 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0,15" HorizontalAlignment="Left" >
                         <Button Content="Add" Width="100" Height="30" Click="AddEmployee_Click" Margin="10"  />
-                        <!--<Button Content="Update" Width="100" Height="30" Click="UpdateEmployee_Click" />-->
-                      <!--<Button Content="Delete" Width="100" Height="30" Click="DeleteEmployee_Click"  />-->
                     </StackPanel>
 
 
-                    <!--<ListBox x:Name="lstEmployees" Grid.Row="5" Height="200" Margin="0,20,0,0" />-->
                 </Grid>
             </TabItem>
 
@@ -72,7 +73,7 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,5">
                         <Label Content="Select Employee:" Width="120" VerticalAlignment="Center" />
-                        <ComboBox x:Name="cmbEmployees" Width="250" Height="25"   />
+                        <ComboBox x:Name="cmbEmployees" Width="250" Height="25" SelectionChanged="cmbEmployees_SelectionChanged"   />
                     </StackPanel>
 
 

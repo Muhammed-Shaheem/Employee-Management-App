@@ -4,5 +4,5 @@
     [Name] NVARCHAR(50) NOT NULL, 
     [BasicSalary] MONEY NOT NULL, 
     [Allowances] MONEY NOT NULL, 
-    [PFPercent] DECIMAL(5, 2) NOT NULL
+    [PFPercent] DECIMAL(5, 2) NOT NULL DEFAULT 12
 )

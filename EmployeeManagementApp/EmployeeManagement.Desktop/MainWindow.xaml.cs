@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementLibrary;
 using EmployeeManagementLibrary.Data;
 using EmployeeManagementLibrary.Models;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 
@@ -33,36 +34,48 @@ public partial class MainWindow : Window
                 PFPercent = decimal.Parse(txtPFPercent.Text)
 
             };
+
             data.AddEmployee(employee);
+            LoadEmployeesInDropDown();
             MessageBox.Show("New Employee Added", "Success Message", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            txtName.Clear();
+            txtBasicSalary.Clear();
+            txtAllowances.Clear();
+            txtPFPercent.Clear();
+
         }
     }
 
     private bool EmptyValueCheck()
     {
+        txtName.BorderBrush = Brushes.Gray;
+        txtBasicSalary.BorderBrush = Brushes.Gray;
+        txtAllowances.BorderBrush = Brushes.Gray;
+        txtPFPercent.BorderBrush = Brushes.Gray;
         if (string.IsNullOrWhiteSpace(txtName.Text))
         {
-            MessageBox.Show("Name is required.");
             txtName.BorderBrush = Brushes.Red;
+            MessageBox.Show("Name is required.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             return false;
         }
         else if (string.IsNullOrWhiteSpace(txtBasicSalary.Text))
         {
-            MessageBox.Show("BasicSalary is required.");
             txtBasicSalary.BorderBrush = Brushes.Red;
+            MessageBox.Show("BasicSalary is required.");
             return false;
 
         }
         else if (string.IsNullOrWhiteSpace(txtAllowances.Text))
         {
-            MessageBox.Show("Allowances is required.");
             txtAllowances.BorderBrush = Brushes.Red;
+            MessageBox.Show("Allowances is required.");
             return false;
         }
-        else if (string.IsNullOrWhiteSpace(txtPFPercent.Text))
+        else if (string.IsNullOrWhiteSpace(txtAllowances.Text))
         {
-            MessageBox.Show("PfPercent is required.");
             txtPFPercent.BorderBrush = Brushes.Red;
+            MessageBox.Show("PFPercent is required.");
             return false;
         }
 
@@ -77,6 +90,7 @@ public partial class MainWindow : Window
         cmbEmployees.DisplayMemberPath = "Name";
 
     }
+
     private void CalculatePayroll_Click(object sender, RoutedEventArgs e)
     {
         if (cmbEmployees.SelectedItem is EmployeeModel selectedEmployee)
@@ -94,10 +108,18 @@ public partial class MainWindow : Window
         }
         else
         {
-            MessageBox.Show("Please select an employee first.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+            MessageBox.Show("Please select an employee first.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
 
     }
 
-   
+    private void cmbEmployees_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        txtGross.Text = $"Gross: {null:C}";
+        txtPF.Text = $"PF: {null:C}";
+        txtLeaveDeduction.Text = $"Leave Deduction: {null:C}";
+        txtNet.Text = $"Net Pay: {null:C}";
+
+    }
 }
